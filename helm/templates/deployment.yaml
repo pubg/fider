@@ -25,6 +25,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "feedback.fullname" . }}
+            - secretRef:
+                name: {{ include "feedback.fullname" . }}-secrets
           env:
             - name: GO_ENV
               value: production
