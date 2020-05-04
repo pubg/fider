@@ -30,8 +30,6 @@ spec:
               value: production
             - name: EMAIL_NOREPLY
               value: feedback@pubg.com
-            - name: HTTP_PORT
-              value: 80
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

@@ -1,5 +1,6 @@
 deployEnv: tools
-environment: {}
+environment:
+    HTTP_PORT: 80
 
 replicaCount: 1
 
