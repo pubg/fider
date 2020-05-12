@@ -36,26 +36,22 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 7000
+              containerPort: 3000
               protocol: TCP
-          volumeMounts:
-            - mountPath: /app/.env
-              name: env-secrets
-              subPath: .env
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      volumes:
-        - name: env-secrets
-          secret: 
-            defaultMode: 420
-            secretName: {{ include "feedback.fullname" . }}-secrets
-            resources:
-{{ toYaml .Values.resources | indent 12 }}
-
-      {{- with .Values.nodeSelector }}
+    {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
