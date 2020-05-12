@@ -18,3 +18,5 @@ debug.test
 .DS_Store
 cover.out
 coverage.tmp
+
+.terraform
